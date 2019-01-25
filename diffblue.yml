@@ -1,0 +1,161 @@
+# Tested on Deeptest release 1.10.0
+cbmcArguments:
+  cover-function-only: false
+  depth: false
+  do-not-test-methods-with-access: [ private ]
+  java-generate-no-comments: true
+phases:
+-
+  timeout: 300
+  cbmcArguments:
+    java-assume-inputs-non-null: true
+    max-nondet-array-length: 10
+    string-non-empty: true
+    unwind: 1
+-
+  timeout: 300
+  cbmcArguments:
+    max-nondet-array-length: 20
+    unwind: 2
+-
+  timeout: 300
+  cbmcArguments:
+    max-nondet-array-length: 30
+    max-nondet-string-length: 10
+    unwind: 3
+units:
+  - target:
+    - dir: opentracing-mock/target/classes
+      file: io/opentracing/mock/MockTracer.class
+      sourceDir: opentracing-mock/src/main/java
+      sourceFile: io/opentracing/mock/MockTracer.java
+    # Child of MockTracer.class
+    - dir: opentracing-api/target/classes
+      file: io/opentracing/References.class
+      sourceDir: opentracing-api/src/main/java
+      sourceFile: io/opentracing/References.java
+    # Child of MockTracer.class
+    - dir: opentracing-api/target/classes
+      file: io/opentracing/Scope.class
+      sourceDir: opentracing-api/src/main/java
+      sourceFile: io/opentracing/Scope.java
+    # Child of MockTracer.class
+    - dir: opentracing-api/target/classes
+      file: io/opentracing/ScopeManager.class
+      sourceDir: opentracing-api/src/main/java
+      sourceFile: io/opentracing/ScopeManager.java
+    # Child of MockTracer.class
+    - dir: opentracing-api/target/classes
+      file: io/opentracing/Span.class
+      sourceDir: opentracing-api/src/main/java
+      sourceFile: io/opentracing/Span.java
+    # Child of MockTracer.class
+    - dir: opentracing-api/target/classes
+      file: io/opentracing/SpanContext.class
+      sourceDir: opentracing-api/src/main/java
+      sourceFile: io/opentracing/SpanContext.java
+    # Child of MockTracer.class
+    - dir: opentracing-api/target/classes
+      file: io/opentracing/Tracer.class
+      sourceDir: opentracing-api/src/main/java
+      sourceFile: io/opentracing/Tracer.java
+    # Child of MockTracer.class
+    - dir: opentracing-noop/target/classes
+      file: io/opentracing/noop/NoopScopeManager.class
+      sourceDir: opentracing-noop/src/main/java
+      sourceFile: io/opentracing/noop/NoopScopeManager.java
+    # Child of MockTracer.class
+    - dir: opentracing-api/target/classes
+      file: io/opentracing/propagation/Format.class
+      sourceDir: opentracing-api/src/main/java
+      sourceFile: io/opentracing/propagation/Format.java
+    # Child of MockTracer.class
+    - dir: opentracing-api/target/classes
+      file: io/opentracing/propagation/TextMap.class
+      sourceDir: opentracing-api/src/main/java
+      sourceFile: io/opentracing/propagation/TextMap.java
+    # Child of MockTracer.class
+    - dir: opentracing-util/target/classes
+      file: io/opentracing/util/ThreadLocalScopeManager.class
+      sourceDir: opentracing-util/src/main/java
+      sourceFile: io/opentracing/util/ThreadLocalScopeManager.java
+  - target:
+    - dir: opentracing-mock/target/classes
+      file: io/opentracing/mock/MockSpan.class
+      sourceDir: opentracing-mock/src/main/java
+      sourceFile: io/opentracing/mock/MockSpan.java
+  - target:
+    - dir: opentracing-util/target/classes
+      file: io/opentracing/util/GlobalTracer.class
+      sourceDir: opentracing-util/src/main/java
+      sourceFile: io/opentracing/util/GlobalTracer.java
+    # Child of GlobalTracer.class
+    - dir: opentracing-noop/target/classes
+      file: io/opentracing/noop/NoopTracer.class
+      sourceDir: opentracing-noop/src/main/java
+      sourceFile: io/opentracing/noop/NoopTracer.java
+    # Child of GlobalTracer.class
+    - dir: opentracing-noop/target/classes
+      file: io/opentracing/noop/NoopTracerFactory.class
+      sourceDir: opentracing-noop/src/main/java
+      sourceFile: io/opentracing/noop/NoopTracerFactory.java
+  - target:
+    - dir: opentracing-api/target/classes
+      file: io/opentracing/propagation/Format.class
+      sourceDir: opentracing-api/src/main/java
+      sourceFile: io/opentracing/propagation/Format.java
+  - target:
+    - dir: opentracing-util/target/classes
+      file: io/opentracing/util/AutoFinishScope.class
+      sourceDir: opentracing-util/src/main/java
+      sourceFile: io/opentracing/util/AutoFinishScope.java
+  - target:
+    - dir: opentracing-api/target/classes
+      file: io/opentracing/Tracer.class
+      sourceDir: opentracing-api/src/main/java
+      sourceFile: io/opentracing/Tracer.java
+  - target:
+    - dir: opentracing-util/target/classes
+      file: io/opentracing/util/ThreadLocalScope.class
+      sourceDir: opentracing-util/src/main/java
+      sourceFile: io/opentracing/util/ThreadLocalScope.java
+  - target:
+    - dir: opentracing-noop/target/classes
+      file: io/opentracing/noop/NoopScopeManager.class
+      sourceDir: opentracing-noop/src/main/java
+      sourceFile: io/opentracing/noop/NoopScopeManager.java
+  - target:
+    - dir: opentracing-noop/target/classes
+      file: io/opentracing/noop/NoopSpanBuilder.class
+      sourceDir: opentracing-noop/src/main/java
+      sourceFile: io/opentracing/noop/NoopSpanBuilder.java
+  - target:
+    - dir: opentracing-api/target/classes
+      file: io/opentracing/tag/StringTag.class
+      sourceDir: opentracing-api/src/main/java
+      sourceFile: io/opentracing/tag/StringTag.java
+  - target:
+    - dir: opentracing-api/target/classes
+      file: io/opentracing/tag/Tags.class
+      sourceDir: opentracing-api/src/main/java
+      sourceFile: io/opentracing/tag/Tags.java
+  - target:
+    - dir: opentracing-api/target/classes
+      file: io/opentracing/Span.class
+      sourceDir: opentracing-api/src/main/java
+      sourceFile: io/opentracing/Span.java
+  - target:
+    - dir: opentracing-noop/target/classes
+      file: io/opentracing/noop/NoopSpan.class
+      sourceDir: opentracing-noop/src/main/java
+      sourceFile: io/opentracing/noop/NoopSpan.java
+  - target:
+    - dir: opentracing-noop/target/classes
+      file: io/opentracing/noop/NoopTracer.class
+      sourceDir: opentracing-noop/src/main/java
+      sourceFile: io/opentracing/noop/NoopTracer.java
+  - target:
+    - dir: opentracing-api/target/classes
+      file: io/opentracing/log/Fields.class
+      sourceDir: opentracing-api/src/main/java
+      sourceFile: io/opentracing/log/Fields.java
